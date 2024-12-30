@@ -1,3 +1,13 @@
+<?php if (session()->has('errors')): ?>
+  <div class="alert alert-danger">
+    <ul>
+      <?php foreach (session('errors') as $error): ?>
+        <li><?= esc($error) ?></li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+<?php endif; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,22 +140,22 @@
                 <label class="form-label" for="role">Role</label>
                 <div class="d-flex">
                   <div class="form-check me-3">
-                    <input class="form-check-input" type="radio" name="role" id="roleStudent" value="student" checked>
-                    <label class="form-check-label" for="roleStudent">Student</label>
+                      <input class="form-check-input" type="radio" name="role" id="roleStudent" value="Student" <?= old('role') == 'Student' ? 'checked' : '' ?>>
+                      <label class="form-check-label" for="roleStudent">Student</label>
                   </div>
                   <div class="form-check me-3">
-                    <input class="form-check-input" type="radio" name="role" id="roleProfessor" value="professor">
-                    <label class="form-check-label" for="roleProfessor">Professor</label>
+                      <input class="form-check-input" type="radio" name="role" id="roleProfessor" value="Professor" <?= old('role') == 'Professor' ? 'checked' : '' ?>>
+                      <label class="form-check-label" for="roleProfessor">Professor</label>
                   </div>
                   <div class="form-check me-3">
-                    <input class="form-check-input" type="radio" name="role" id="roleAdmin" value="admin">
-                    <label class="form-check-label" for="roleAdmin">Admin</label>
+                      <input class="form-check-input" type="radio" name="role" id="roleAdmin" value="Admin" <?= old('role') == 'Admin' ? 'checked' : '' ?>>
+                      <label class="form-check-label" for="roleAdmin">Admin</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
+          
           <!-- Submit Button -->
           <div class="text-center text-lg-start pt-2">
             <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
