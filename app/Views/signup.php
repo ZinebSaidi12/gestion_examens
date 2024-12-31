@@ -140,7 +140,7 @@
                 <label class="form-label" for="role">Role</label>
                 <div class="d-flex">
                   <div class="form-check me-3">
-                      <input class="form-check-input" type="radio" name="role" id="roleStudent" value="Student" <?= old('role') == 'Student' ? 'checked' : '' ?>>
+                      <input class="form-check-input" type="radio" name="role" id="roleStudent" value="Student" <?= old('role') == 'Student' || !old('role') ? 'checked' : '' ?>>
                       <label class="form-check-label" for="roleStudent">Student</label>
                   </div>
                   <div class="form-check me-3">
