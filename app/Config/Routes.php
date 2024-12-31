@@ -5,13 +5,20 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
 
-$routes->get('/login', 'LoginController::index');// Affiche la page de connexion
-$routes->get('/signup', 'SignupController::index'); // Affiche la page d'inscription
-$routes->post('/signup', 'SignupController::register'); // Traite l'inscription
+
+
+// Page d'accueil
+$routes->get('/', 'Home::index');
 
 // Routes pour la connexion
 $routes->get('/login', 'LoginController::index'); // Affiche la page de connexion
 $routes->post('/login', 'LoginController::authenticate'); // Traite la connexion
 $routes->get('/logout', 'LoginController::logout'); // Déconnecte l'utilisateur
+
+// Routes pour l'inscription
+$routes->get('/signup', 'SignupController::index'); // Affiche la page d'inscription
+$routes->post('/signup', 'SignupController::register'); // Traite l'inscription
+
+// Route pour le tableau de bord
+$routes->get('/dashboard', 'DashboardController::index'); // Protégé par un filtre d'authentification
