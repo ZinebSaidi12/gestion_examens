@@ -27,3 +27,4 @@ $routes->post('/profile/update', 'ProfileController::update');
 //profile
 $routes->get('/profile', 'ProfileController::index');
 $routes->post('/profile/update', 'ProfileController::update');
+//notes 
