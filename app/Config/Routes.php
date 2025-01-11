@@ -22,3 +22,11 @@ $routes->post('/signup', 'SignupController::register'); // Traite l'inscription
 
 // Route pour le tableau de bord
 $routes->get('/dashboard', 'DashboardController::index'); // Protégé par un filtre d'authentification
+//profile $routes->get('/profile', 'ProfileController::index');
+$routes->post('/profile/update', 'ProfileController::update');
+//profile
+$routes->get('/profile', 'ProfileController::index');
+$routes->post('/profile/update', 'ProfileController::update');
+//notes 
+// Route pour consulter les notes
+$routes->get('/notes', 'NotesController::getNotes');
