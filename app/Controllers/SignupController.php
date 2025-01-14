@@ -21,8 +21,8 @@ class SignupController extends Controller
 
         // Récupération des données du formulaire
         $data = [
-            'nom' => $this->request->getPost('firstName'),
-            'prenom' => $this->request->getPost('lastName'),
+            'nom' => $this->request->getPost('lastName'),
+            'prenom' => $this->request->getPost('firstName'),
             'date_of_birth' => $this->request->getPost('dob'),
             'niveau' => $this->request->getPost('level'),
             'section' => $this->request->getPost('section'),

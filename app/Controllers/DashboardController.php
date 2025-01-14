@@ -6,14 +6,14 @@ use App\Models\AccountModel;
 
 class DashboardController extends BaseController
 {
-    public function index()
+    private function renderDashboard(string $view)
     {
         // Check if the user is logged in
         if (!session()->has('is_logged_in')) {
             return redirect()->to('/login')->with('error', 'You must log in first.');
         }
 
-        $userId = session()->get('user_id');
+        $userId = session()->get('account_id');
 
         $accountModel = new AccountModel();
 
@@ -27,7 +27,17 @@ class DashboardController extends BaseController
             return redirect()->back()->with('error', 'User not found.');
         }
 
-        // Pass profile data to the view
-        return view('dashboard', ['user' => $account]);
+        // Render the specified view with user data
+        return view($view, ['user' => $account]);
+    }
+
+    public function index()
+    {
+        return $this->renderDashboard('dashboard');
+    }
+
+    public function dashboard_Content()
+    {
+        return $this->renderDashboard('dashboard_content');
     }
 }

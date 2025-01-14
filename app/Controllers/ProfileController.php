@@ -7,30 +7,30 @@ use App\Models\UserModel;
 
 class ProfileController extends BaseController
 {
-public function index(){    // Vérifiez si l'utilisateur est connecté
-    if (!session()->has('is_logged_in')) {
-        return redirect()->to('/login')->with('error', 'You must log in first.');
+    public function index()
+    {
+        // Vérifiez si l'utilisateur est connecté
+        if (!session()->has('is_logged_in')) {
+            return redirect()->to('/login')->with('error', 'You must log in first.');
+        }
+    
+        $userId = session()->get('user_id'); // L'ID de l'utilisateur connecté
+
+        // Créez une instance du modèle UserModel
+        $userModel = new UserModel();
+    
+        // Récupérer les informations de l'utilisateur depuis la base de données
+        $user = $userModel->find($userId);  // Recherche de l'utilisateur par son ID
+    
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+    
+        // Charger la vue avec les données de l'utilisateur
+        return view('profile', ['user' => $user]);
     }
 
-    $userId = session()->get('user_id'); // L'ID de la table `comptes`
-
-    $accountModel = new AccountModel();
-
-    // Récupérer les informations du compte et de l'utilisateur
-    $account = $accountModel
-        ->select('comptes.*, users.nom, users.prenom, users.date_of_birth, users.niveau, users.section')
-        ->join('users', 'users.id = comptes.user_id') // Jointure avec la table `users`
-        ->find($userId);
-
-    if (!$account) {
-        return redirect()->back()->with('error', 'User not found.');
-    }
-
-    // Charger la vue avec les informations complètes
-    return view('profile', ['user' => $account]);
-}
-
-    public function update()
+    function update()
     {
         // Vérifiez si l'utilisateur est connecté
         if (!session()->has('is_logged_in')) {
@@ -38,6 +38,7 @@ public function index(){    // Vérifiez si l'utilisateur est connecté
         }
 
         $userId = session()->get('user_id');
+        //echo $userId; exit;
 
         $userModel = new UserModel();
 
@@ -58,6 +59,9 @@ public function index(){    // Vérifiez si l'utilisateur est connecté
         // Mettre à jour les informations utilisateur
         $userModel->update($userId, $data);
 
-        return redirect()->to('/profile')->with('success', 'Profile updated successfully.');
-    }
+        // Récupérer les informations mises à jour et rediriger vers la page de profil
+        $updatedUser = $userModel->find($userId);
+
+        return redirect()->to('/dashboard')->with('success', 'Profile updated successfully.')->with('user', $updatedUser);
+    }    
 }
