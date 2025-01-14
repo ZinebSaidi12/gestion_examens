@@ -33,7 +33,8 @@ class LoginController extends BaseController
 
         // Enregistrer les informations utilisateur dans la session
         session()->set([
-            'user_id' => $user['id'],
+            'account_id' => $user['id'],
+            'user_id' => $user['user_id'],
             'username' => $user['username'],
             'role' => $user['role_name'],
             'is_logged_in' => true,
