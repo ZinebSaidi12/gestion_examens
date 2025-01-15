@@ -16,6 +16,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <!-- Custom styles for this template-->
     <link href="<?= base_url('css/sb-admin-2.min.css') ?>" rel="stylesheet">
+<style>/* Initial dimensions for smaller screens */
+.card.shadow.mb-4 {
+    width: 100%; /* Par défaut, prend toute la largeur de son parent */
+    max-width: 1250px; /* Maximum largeur pour petits écrans */
+    margin: 0 auto;
+}
+
+/* Quand l'écran est large (plein écran ou plus large) */
+@media (min-width: 1200px) {
+    .card.shadow.mb-4 {
+        width: 1250px; /* Largeur spécifique */
+
+    }
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -99,31 +114,54 @@
                     <div class="row">
                         <div class="col-lg-6 mb-4">
                             <div class="col-lg-6 mb-4">
-                                <!-- Info Card -->
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Info Personnels</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="card mx-auto" style="max-width: 600px;">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Student Profile</h5>
-                                                <p><strong>Name:</strong> <?= esc($user['prenom']) ?> <?= esc($user['nom']) ?></p>
-                                                <p><strong>Date of Birth:</strong> <?= esc($user['date_of_birth']) ?></p>
-                                                <p><strong>Level:</strong> <?= esc($user['niveau']) ?></p>
-                                                <p><strong>Section:</strong> <?= esc($user['section']) ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="text-center mt-4">
-                                            <a href="/logout" class="btn btn-danger">Logout</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+<!-- Personal Info Section -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-gradient-primary text-white">
+        <h6 class="m-0 font-weight-bold">Informations Personnelles</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!-- Profile Icon -->
+            <div class="col-md-4 text-center">
+                <div class="icon-circle bg-primary text-white mx-auto" style="width: 100px; height: 100px; line-height: 100px; font-size: 2.5rem; border-radius: 50%;">
+                    <i class="fas fa-user"></i>
                 </div>
+            </div>
+            <!-- Info Details -->
+            <div class="col-md-8">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="text-primary" style="width: 40%;">Nom :</th>
+                            <td class="text-dark"><?= esc($user['nom']) ?></td>
+                        </tr>
+                        <tr>
+                            <th class="text-primary">Prénom :</th>
+                            <td class="text-dark"><?= esc($user['prenom']) ?></td>
+                        </tr>
+                        <tr>
+                            <th class="text-primary">Date de Naissance :</th>
+                            <td class="text-dark"><?= esc($user['date_of_birth']) ?></td>
+                        </tr>
+                        <tr>
+                            <th class="text-primary">Niveau :</th>
+                            <td class="text-dark"><?= esc($user['niveau']) ?></td>
+                        </tr>
+                        <tr>
+                            <th class="text-primary">Section :</th>
+                            <td class="text-dark"><?= esc($user['section']) ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/logout" class="btn btn-danger btn-sm px-4">Se Déconnecter</a>
+        </div>
+    </div>
+</div>
+
+
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
